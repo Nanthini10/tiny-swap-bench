@@ -1,5 +1,12 @@
 # tiny-swap-bench
 
+**Repository:** [github.com/Nanthini10/tiny-swap-bench](https://github.com/Nanthini10/tiny-swap-bench)
+
+```bash
+git clone https://github.com/Nanthini10/tiny-swap-bench.git
+cd tiny-swap-bench
+```
+
 Controlled small-scale ablations of decoder-transformer design choices on **TinyStories**, Karpathy-style (plain PyTorch, one training loop, YAML + dataclasses).
 
 ## Reference configuration (null hypothesis)

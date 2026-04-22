@@ -1,0 +1,116 @@
+{
+  "run_id": "20260422-210510-4bce3c7e",
+  "rows": [
+    {
+      "seed": 0,
+      "non_embedding_params": 19519872,
+      "total_trainable_params": 38818560,
+      "final_val_loss": 302.0,
+      "budget_train_tokens": 1000000000,
+      "budget_train_flops_counter": 1.1802651557599642e+17,
+      "val_loss_at_flop_checkpoint": 302.0,
+      "wall_seconds_total_run": 0.6486281479992613,
+      "wall_seconds_for_budget_tokens_throughput_estimate": 19794.560180641518,
+      "val_loss_at_wall_checkpoint": 302.0,
+      "cum_train_flops_observed": 3867439398912.0,
+      "tokens_per_sec_mean": 50518.929992593105,
+      "peak_gpu_memory_bytes": 31749006848,
+      "llm_judge": {
+        "coherence_mean": 0.0,
+        "grammar_mean": 0.0,
+        "creativity_mean": 0.0
+      },
+      "history_len": 1
+    },
+    {
+      "seed": 1,
+      "non_embedding_params": 19519872,
+      "total_trainable_params": 38818560,
+      "final_val_loss": 304.0,
+      "budget_train_tokens": 1000000000,
+      "budget_train_flops_counter": 1.1802651557599642e+17,
+      "val_loss_at_flop_checkpoint": 304.0,
+      "wall_seconds_total_run": 0.29203205200064986,
+      "wall_seconds_for_budget_tokens_throughput_estimate": 8912.110961933895,
+      "val_loss_at_wall_checkpoint": 304.0,
+      "cum_train_flops_observed": 3867439398912.0,
+      "tokens_per_sec_mean": 112206.86145754672,
+      "peak_gpu_memory_bytes": 31783547392,
+      "llm_judge": {
+        "coherence_mean": 0.0,
+        "grammar_mean": 0.0,
+        "creativity_mean": 0.0
+      },
+      "history_len": 1
+    },
+    {
+      "seed": 2,
+      "non_embedding_params": 19519872,
+      "total_trainable_params": 38818560,
+      "final_val_loss": 300.0,
+      "budget_train_tokens": 1000000000,
+      "budget_train_flops_counter": 1.1802651557599642e+17,
+      "val_loss_at_flop_checkpoint": 300.0,
+      "wall_seconds_total_run": 0.2921986140008812,
+      "wall_seconds_for_budget_tokens_throughput_estimate": 8917.19403078861,
+      "val_loss_at_wall_checkpoint": 300.0,
+      "cum_train_flops_observed": 3867439398912.0,
+      "tokens_per_sec_mean": 112142.90017098158,
+      "peak_gpu_memory_bytes": 31783547392,
+      "llm_judge": {
+        "coherence_mean": 0.0,
+        "grammar_mean": 0.0,
+        "creativity_mean": 0.0
+      },
+      "history_len": 1
+    }
+  ],
+  "aggregate": {
+    "run_id": "20260422-210510-4bce3c7e",
+    "final_val_loss": {
+      "mean": 302.0,
+      "stderr": 1.1547005383792517,
+      "per_seed": [
+        302.0,
+        304.0,
+        300.0
+      ]
+    },
+    "val_loss_at_flop_checkpoint": {
+      "mean": 302.0,
+      "stderr": 1.1547005383792517,
+      "per_seed": [
+        302.0,
+        304.0,
+        300.0
+      ]
+    },
+    "val_loss_at_wall_checkpoint": {
+      "mean": 302.0,
+      "stderr": 1.1547005383792517,
+      "per_seed": [
+        302.0,
+        304.0,
+        300.0
+      ]
+    },
+    "tokens_per_sec_mean": {
+      "mean": 91622.89720704047,
+      "stderr": 20551.99190132445,
+      "per_seed": [
+        50518.929992593105,
+        112206.86145754672,
+        112142.90017098158
+      ]
+    },
+    "peak_gpu_memory_bytes": {
+      "mean": 31772033877.333332,
+      "stderr": 11513514.666666668,
+      "per_seed": [
+        31749006848.0,
+        31783547392.0,
+        31783547392.0
+      ]
+    }
+  }
+}

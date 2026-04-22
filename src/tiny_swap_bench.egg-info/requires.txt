@@ -1,0 +1,9 @@
+torch>=2.1
+tiktoken>=0.5
+pyyaml>=6
+einops>=0.7
+datasets>=2.16
+wandb>=0.16
+
+[dev]
+pytest>=7.4

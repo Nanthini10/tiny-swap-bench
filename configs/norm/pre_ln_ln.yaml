@@ -1,0 +1,2 @@
+model:
+  norm: pre_ln_ln

@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tiny-swap-bench"
+version = "0.1.0"
+description = "Small-scale decoder ablations on TinyStories (Karpathy-style)"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "torch>=2.1",
+  "tiktoken>=0.5",
+  "pyyaml>=6",
+  "einops>=0.7",
+  "datasets>=2.16",
+  "wandb>=0.16",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"

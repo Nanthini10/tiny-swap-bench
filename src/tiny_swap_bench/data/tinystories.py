@@ -30,9 +30,20 @@ class TinyStoriesTokenizer:
         return self.enc.encode(text, allowed_special={"<|endoftext|>"})
 
 
-def load_train_val_rows(dataset_path: str, split_name: str, val_fraction: float) -> tuple[Dataset, Dataset]:
-    """Split examples into train/val by deterministic hash bucket (≈ ``val_fraction``)."""
-    ds = load_dataset(dataset_path, split=split_name, trust_remote_code=True)
+def load_train_val_rows(
+    dataset_path: str,
+    split_name: str,
+    val_fraction: float,
+    *,
+    max_examples: int | None = None,
+) -> tuple[Dataset, Dataset]:
+    """Split examples into train/val by deterministic hash bucket (≈ ``val_fraction``).
+
+    ``max_examples`` optionally truncates to the first N rows (used for fast smoke runs).
+    """
+    ds = load_dataset(dataset_path, split=split_name)
+    if max_examples is not None:
+        ds = ds.select(range(min(len(ds), max_examples)))
     bucket_cut = max(1, int(100 * val_fraction))
     train_rows: list[dict[str, str]] = []
     val_rows: list[dict[str, str]] = []

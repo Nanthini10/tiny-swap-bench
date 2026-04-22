@@ -26,7 +26,7 @@ train:
   seed: 0
 
 data:
-  dataset_path: roneneliav/TinyStories
+  dataset_path: roneneldan/TinyStories
   dataset_split_train: train
   val_fraction: 0.01
   tokenizer_name: gpt2

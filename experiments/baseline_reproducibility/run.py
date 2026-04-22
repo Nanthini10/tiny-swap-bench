@@ -2,6 +2,9 @@
 """Pipeline-validation baseline: reference config × seeds {0,1,2}.
 
 Requires CUDA (training refuses CPU). Use ``--smoke`` for a tiny budget while keeping bf16 paths hot.
+
+Use ``--max-train-tokens N`` to run a shorter multi-seed baseline (overrides ``configs/base.yaml``);
+``eval.flop_matched_budget_tokens`` is set to the same value so checkpoint metrics stay aligned.
 """
 
 from __future__ import annotations
@@ -30,9 +33,35 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--configs-root", type=Path, default=Path(__file__).resolve().parents[2] / "configs")
     parser.add_argument("--smoke", action="store_true")
+    parser.add_argument(
+        "--max-train-tokens",
+        type=int,
+        default=None,
+        metavar="N",
+        help=(
+            "Override train.max_train_tokens for each seed (default: from base.yaml, usually 1e9). "
+            "Also sets eval.flop_matched_budget_tokens to N. Example: 50000000 (~50M tokens per seed)."
+        ),
+    )
     args = parser.parse_args()
 
     base_cfg = load_run_config([args.configs_root / "base.yaml"])
+    if args.max_train_tokens is not None:
+        if args.max_train_tokens <= 0:
+            raise SystemExit("--max-train-tokens must be positive")
+        base_cfg = replace(
+            base_cfg,
+            train=replace(base_cfg.train, max_train_tokens=args.max_train_tokens),
+            eval=replace(base_cfg.eval, flop_matched_budget_tokens=args.max_train_tokens),
+        )
+        if args.smoke:
+            print(
+                "Note: --smoke caps each seed to ~8k training tokens in train_run; "
+                "--max-train-tokens still updates YAML-derived budgets in resolved_run.json.",
+                flush=True,
+            )
+        else:
+            print(f"Shorter baseline: max_train_tokens={args.max_train_tokens} per seed (incl. flop budget).", flush=True)
     run_id = time.strftime("%Y%m%d-%H%M%S") + "-" + uuid.uuid4().hex[:8]
     exp_root = Path(__file__).resolve().parent / run_id
     prompts_path = Path(__file__).resolve().parents[2] / "eval" / "prompts.json"
@@ -75,7 +104,10 @@ def main() -> None:
     }
 
     out_json = exp_root / "results_table.json"
-    out_json.write_text(json.dumps({"run_id": run_id, "rows": rows, "aggregate": agg}, indent=2), default=str)
+    out_json.write_text(
+        json.dumps({"run_id": run_id, "rows": rows, "aggregate": agg}, indent=2, default=str),
+        encoding="utf-8",
+    )
 
     print("\n### Baseline reproducibility — results (mean ± stderr over seeds)\n")
     print("| Quantity | seed 0 | seed 1 | seed 2 | mean ± stderr |")

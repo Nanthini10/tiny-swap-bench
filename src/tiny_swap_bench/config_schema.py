@@ -45,7 +45,7 @@ class TrainConfig:
 
 @dataclass
 class DataConfig:
-    dataset_path: str = "roneneliav/TinyStories"
+    dataset_path: str = "roneneldan/TinyStories"
     dataset_split_train: str = "train"
     val_fraction: float = 0.01
     tokenizer_name: str = "gpt2"

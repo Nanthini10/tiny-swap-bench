@@ -1,0 +1,53 @@
+{
+  "config": {
+    "experiment_name": "baseline_reference",
+    "model": {
+      "n_layer": 11,
+      "n_embd": 384,
+      "n_head": 6,
+      "mlp_ratio": 4.0,
+      "seq_len": 512,
+      "vocab_size": 50257,
+      "dropout": 0.0,
+      "pe": "learned_abs",
+      "norm": "pre_ln_ln"
+    },
+    "train": {
+      "lr": 0.0006,
+      "beta1": 0.9,
+      "beta2": 0.95,
+      "weight_decay": 0.1,
+      "grad_clip": 1.0,
+      "warmup_steps": 100,
+      "batch_size": 64,
+      "grad_accum_steps": 1,
+      "max_train_tokens": 240000000,
+      "precision": "bf16",
+      "optimizer": "adamw",
+      "seed": 1
+    },
+    "data": {
+      "dataset_path": "roneneldan/TinyStories",
+      "dataset_split_train": "train",
+      "val_fraction": 0.01,
+      "tokenizer_name": "gpt2"
+    },
+    "eval": {
+      "eval_interval_steps": 500,
+      "checkpoint_interval_steps": 500,
+      "generation_num_samples": 100,
+      "flop_matched_budget_tokens": 240000000
+    }
+  },
+  "environment": {
+    "python": "3.10.12 (main, Mar  3 2026, 11:56:32) [GCC 11.4.0]",
+    "platform": "Linux-6.8.0-90-generic-x86_64-with-glibc2.35",
+    "torch": "2.11.0+cu128",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA H100 PCIe",
+    "cwd": "/home/shadeform/small-llm",
+    "pid": 35044,
+    "utc": "2026-04-22T19:27:24.756966+00:00"
+  },
+  "git_sha": "47e2606796eb44e5ba95c138018ef5e8ef9d0710"
+}

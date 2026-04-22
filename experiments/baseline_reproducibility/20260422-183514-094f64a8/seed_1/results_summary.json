@@ -1,0 +1,21 @@
+{
+  "seed": 1,
+  "non_embedding_params": 19519872,
+  "total_trainable_params": 39015168,
+  "final_val_loss": 240.0,
+  "budget_train_tokens": 1000000000,
+  "budget_train_flops_counter": 1.1802651557599642e+17,
+  "val_loss_at_flop_checkpoint": 240.0,
+  "wall_seconds_total_run": 0.2655955550001181,
+  "wall_seconds_for_budget_tokens_throughput_estimate": 8105.33309936884,
+  "val_loss_at_wall_checkpoint": 240.0,
+  "cum_train_flops_observed": 3867439398912.0,
+  "tokens_per_sec_mean": 123375.55875129547,
+  "peak_gpu_memory_bytes": 31781123584,
+  "llm_judge": {
+    "coherence_mean": 0.0,
+    "grammar_mean": 0.0,
+    "creativity_mean": 0.0
+  },
+  "history_len": 1
+}

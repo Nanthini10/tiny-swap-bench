@@ -34,7 +34,7 @@ def test_train_run_smoke_monkeypatch(tmp_path):
         data=DataConfig(dataset_path="stub/stub"),
         eval=EvalConfig(eval_interval_steps=1, checkpoint_interval_steps=9999, generation_num_samples=3),
     )
-    prompts = Path(__file__).resolve().parents[1].parent / "eval" / "prompts.json"
+    prompts = Path(__file__).resolve().parents[1] / "eval" / "prompts.json"
 
     with patch.object(train_loop, "load_train_val_rows", _fake_load_train_val_rows):
         out = train_loop.train_run(cfg, tmp_path, prompts_path=prompts, smoke=True, smoke_eval_batches=1)

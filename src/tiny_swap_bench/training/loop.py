@@ -86,7 +86,12 @@ def train_run(
     dtype = torch.bfloat16 if cfg.train.precision == "bf16" else torch.float32
 
     tok = TinyStoriesTokenizer(cfg.data.tokenizer_name)
-    train_ds, val_ds = load_train_val_rows(cfg.data.dataset_path, cfg.data.dataset_split_train, cfg.data.val_fraction)
+    train_ds, val_ds = load_train_val_rows(
+        cfg.data.dataset_path,
+        cfg.data.dataset_split_train,
+        cfg.data.val_fraction,
+        max_examples=65_536 if smoke else None,
+    )
 
     model = ReferenceTransformer(cfg.model).to(device=device)
     non_emb = count_non_embedding_params(model)
@@ -269,7 +274,7 @@ def train_run(
         "history_len": len(history),
     }
 
-    (run_dir / "results_summary.json").write_text(json.dumps(summary, indent=2), default=str)
+    (run_dir / "results_summary.json").write_text(json.dumps(summary, indent=2, default=str), encoding="utf-8")
 
     if wb is not None:
         wb.finish()
